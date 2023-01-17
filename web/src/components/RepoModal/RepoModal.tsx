@@ -36,7 +36,6 @@ function RepoModal({ repo, closeModal }: Props) {
       if (res.ok) {
         if (res.body) {
           const data = await res.text();
-          console.log(data);
           setReadme(data);
         }
       }

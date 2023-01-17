@@ -23,7 +23,6 @@ export function App() {
   }, []);
 
   useEffect(() => {
-    console.log('got here');
     // fetch data
     const hydrateData = async () => {
       const data = await getRepos();
