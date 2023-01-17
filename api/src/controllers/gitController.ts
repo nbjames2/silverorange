@@ -1,7 +1,5 @@
 import hardcodedRepos from '../../data/repos.json';
 import { Repo } from '../models/Repo';
-import { Commit } from '../models/Commit';
-import { User } from '../models/User';
 
 const getGitRepos = async () => {
   const res = await fetch('https://api.github.com/users/silverorange/repos');
@@ -17,26 +15,6 @@ const getGitRepos = async () => {
   return repos;
 };
 
-const getGitCommit = async (url: string) => {
-  const res = await fetch(url);
-  let result: Commit | undefined;
-  if (res.ok) {
-    result = await res.json();
-  }
-
-  return result;
-};
-
-const getGitUser = async (url: string) => {
-  const res = await fetch(url);
-  let result: User | undefined;
-  if (res.ok) result = await res.json();
-
-  return result;
-};
-
 export default {
   getGitRepos,
-  getGitCommit,
-  getGitUser,
 };

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { Repo } from '../../../types/Repo';
-import { CloseButton } from '../CloseButton/CloseButton';
+import { CloseButton } from './CloseButton/CloseButton';
 import './RepoModal.css';
 import { Commit } from '../../../types/Commit';
 
@@ -53,6 +53,7 @@ function RepoModal({ repo, closeModal }: Props) {
         <div>Most recent commit date: {commit?.commit.author.date}</div>
         <div>Author: {commit?.commit.author.name}</div>
         <div>Message: {commit?.commit.message}</div>
+        {/* // render readme as parsed markdown */}
         <div>{readme && <ReactMarkdown>{readme}</ReactMarkdown>}</div>
       </div>
     </div>

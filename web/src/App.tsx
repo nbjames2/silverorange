@@ -12,6 +12,7 @@ export function App() {
   const [languageList, setLanguageList] = useState<string[]>([]);
   const [language, setLanguage] = useState<string>('');
 
+  // get all nonfork repos, retry if fail
   const getRepos: () => Promise<any> = useCallback(async () => {
     const res = await fetch('http://localhost:4000/repos');
     if (res.ok) {
@@ -33,6 +34,7 @@ export function App() {
     hydrateData();
   }, [getRepos]);
 
+  // generate list of languages from the full repos list
   useEffect(() => {
     const languageSet = new Set<string>();
     for (const repo of allRepos) {
@@ -42,6 +44,7 @@ export function App() {
     setLanguageList(languageArray);
   }, [allRepos]);
 
+  // filter for only selected language
   useEffect(() => {
     if (language) {
       const repos = allRepos.filter((repo) => repo.language === language);
@@ -50,6 +53,16 @@ export function App() {
       setDisplayRepos(allRepos);
     }
   }, [language, allRepos]);
+
+  // stop background from scrolling when modal is open
+  useEffect(() => {
+    const body = document.body;
+    if (selectedRepo) {
+      body.classList.add('no-scroll');
+    } else {
+      body.classList.remove('no-scroll');
+    }
+  }, [selectedRepo]);
 
   return (
     <div className="App">
@@ -67,6 +80,7 @@ export function App() {
           />
         );
       })}
+      {/* // show modal only if one is clicked */}
       {selectedRepo && (
         <RepoModal
           repo={selectedRepo}

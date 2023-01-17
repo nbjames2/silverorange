@@ -14,23 +14,3 @@ repos.get('/', async (_: Request, res: Response) => {
   const result: Repo[] = await gitController.getGitRepos();
   res.json(result);
 });
-
-repos.get('/commit', async (req: Request, res: Response) => {
-  res.header('Cache-Control', 'no-store');
-
-  res.status(200);
-
-  const { url }: { url: string } = req.body;
-  const result: Commit | undefined = await gitController.getGitCommit(url);
-  res.json(result);
-});
-
-repos.get('/user', async (req: Request, res: Response) => {
-  res.header('Cache-Control', 'no-store');
-
-  res.status(200);
-
-  const { url }: { url: string } = req.body;
-  const result: User | undefined = await gitController.getGitUser(url);
-  res.json(result);
-});
