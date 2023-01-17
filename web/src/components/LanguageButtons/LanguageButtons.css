@@ -1,0 +1,8 @@
+.language-buttons-container {
+  display: flex;
+  gap: 1rem;
+}
+
+.language-button.selected {
+  background: lightblue;
+}

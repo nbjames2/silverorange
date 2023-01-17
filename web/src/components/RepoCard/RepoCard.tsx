@@ -3,11 +3,16 @@ import './RepoCard.css';
 
 interface Props {
   repo: Repo;
+  setSelectedRepo: (repo: Repo) => void;
 }
 
-function RepoCard({ repo }: Props) {
+function RepoCard({ repo, setSelectedRepo }: Props) {
   return (
-    <div key={repo.id} className="repocard-container">
+    <div
+      key={repo.id}
+      className="repocard-container"
+      onClick={() => setSelectedRepo(repo)}
+    >
       <div>Name: {repo.name}</div>
       <div>Description: {repo.description}</div>
       <div>Language: {repo.language}</div>
